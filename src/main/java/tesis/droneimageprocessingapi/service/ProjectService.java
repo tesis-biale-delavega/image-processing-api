@@ -59,6 +59,6 @@ public class ProjectService {
     }
 
     public List<Project> getAllUserProjects() {
-        return projectRepository.findAllByUserId(sessionUtils.getLoggedUserInfo().getId());
+        return projectRepository.findAllByUserIdOrderByCreationDateDesc(sessionUtils.getLoggedUserInfo().getId());
     }
 }

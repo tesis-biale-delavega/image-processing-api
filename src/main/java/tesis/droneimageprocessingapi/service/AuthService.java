@@ -41,10 +41,10 @@ public class AuthService {
 
     public User registerUser(RegisterRequest registerRequest) {
         if (userRepository.existsByUsername(registerRequest.getUsername()))
-            throw new BadRequestException("Username already in use");
+            throw new BadRequestException("El usuario ya se encuentra en uso");
 
         if (userRepository.existsByEmail(registerRequest.getEmail()))
-            throw new BadRequestException("Email already in use");
+            throw new BadRequestException("El email ya se encuentra en uso");
 
         User user = User.builder()
                 .username(registerRequest.getUsername())

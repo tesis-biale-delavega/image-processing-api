@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjectRepository extends CrudRepository<Project, String> {
-    List<Project> findAllByUserId(String userId);
+    List<Project> findAllByUserIdOrderByCreationDateDesc(String userId);
     Optional<Project> findFirstByUserIdAndFileName(String userId, String projectUrl);
 }
