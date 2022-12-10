@@ -45,11 +45,13 @@ public class ProjectService {
         });
 
         try {
+            final String[] parts = file.getOriginalFilename().split("/");
+            final String name = parts[parts.length - 1];
             BlobInfo blobInfo = storage.createFrom(
-                    BlobInfo.newBuilder(bucket, file.getOriginalFilename()).build(),
+                    BlobInfo.newBuilder(bucket, name).build(),
                     file.getInputStream()
             );
-            return projectRepository.save(Project.from(user, file.getOriginalFilename(), blobInfo.getMediaLink()));
+            return projectRepository.save(Project.from(user, name, blobInfo.getMediaLink()));
         }catch(Exception e){
             log.info(e.getMessage());
             throw new BadRequestException("Error creating new file");
